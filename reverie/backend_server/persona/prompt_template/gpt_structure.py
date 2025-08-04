@@ -12,6 +12,7 @@ import time
 from utils import *
 
 openai.api_key = openai_api_key
+openai.api_base = openai_base_url
 
 def temp_sleep(seconds=0.1):
   time.sleep(seconds)
@@ -20,7 +21,7 @@ def ChatGPT_single_request(prompt):
   temp_sleep()
 
   completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo", 
+    model="Pro/deepseek-ai/DeepSeek-V3", 
     messages=[{"role": "user", "content": prompt}]
   )
   return completion["choices"][0]["message"]["content"]
@@ -46,7 +47,7 @@ def GPT4_request(prompt):
 
   try: 
     completion = openai.ChatCompletion.create(
-    model="gpt-4", 
+    model="Pro/deepseek-ai/DeepSeek-V3", 
     messages=[{"role": "user", "content": prompt}]
     )
     return completion["choices"][0]["message"]["content"]
@@ -71,7 +72,7 @@ def ChatGPT_request(prompt):
   # temp_sleep()
   try: 
     completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo", 
+    model="Pro/deepseek-ai/DeepSeek-V3", 
     messages=[{"role": "user", "content": prompt}]
     )
     return completion["choices"][0]["message"]["content"]
@@ -209,7 +210,7 @@ def GPT_request(prompt, gpt_parameter):
   temp_sleep()
   try: 
     response = openai.Completion.create(
-                model=gpt_parameter["engine"],
+                model="Pro/deepseek-ai/DeepSeek-V3",
                 prompt=prompt,
                 temperature=gpt_parameter["temperature"],
                 max_tokens=gpt_parameter["max_tokens"],
@@ -273,7 +274,7 @@ def safe_generate_response(prompt,
   return fail_safe_response
 
 
-def get_embedding(text, model="text-embedding-ada-002"):
+def get_embedding(text, model="Qwen/Qwen3-Embedding-8B"):
   text = text.replace("\n", " ")
   if not text: 
     text = "this is blank"
@@ -282,7 +283,7 @@ def get_embedding(text, model="text-embedding-ada-002"):
 
 
 if __name__ == '__main__':
-  gpt_parameter = {"engine": "text-davinci-003", "max_tokens": 50, 
+  gpt_parameter = {"engine": "Pro/deepseek-ai/DeepSeek-V3", "max_tokens": 50, 
                    "temperature": 0, "top_p": 1, "stream": False,
                    "frequency_penalty": 0, "presence_penalty": 0, 
                    "stop": ['"']}
