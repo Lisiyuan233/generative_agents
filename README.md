@@ -14,8 +14,10 @@ To set up your environment, you will need to generate a `utils.py` file that con
 ### Step 1. Generate Utils File
 In the `reverie/backend_server` folder (where `reverie.py` is located), create a new file titled `utils.py` and copy and paste the content below into the file:
 ```
+import os
 # Copy and paste your OpenAI API Key
-openai_api_key = "<Your OpenAI API>"
+openai_api_key = "<OpenAI_API_Key>"
+openai_base_url = "https://api.siliconflow.cn/v1"
 # Put your name
 key_owner = "<Name>"
 
